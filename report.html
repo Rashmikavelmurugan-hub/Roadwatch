@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Report Issue</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header>
+    <h2>🚧 RoadWatch</h2>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="report.html">Report</a>
+        <a href="track.html">Track</a>
+        <a href="about.html">About</a>
+    </nav>
+</header>
+
+<main class="form">
+    <h1>Report an Issue</h1>
+
+    <form id="reportForm">
+        <label>Name</label>
+        <input id="name" type="text" required>
+
+        <label>Issue Type</label>
+        <select id="type" required>
+            <option value="">Select Issue</option>
+            <option>Pothole</option>
+            <option>Street Light</option>
+            <option>Road Damage</option>
+            <option>Other</option>
+        </select>
+
+        <label>Location</label>
+        <input id="location" type="text" required>
+
+        <label>Description</label>
+        <textarea id="description" required></textarea>
+
+        <label>Upload Image</label>
+        <input id="image" type="file" accept="image/*">
+
+        <img id="preview">
+
+        <button type="submit">Submit Report</button>
+    </form>
+</main>
+
+<footer>© 2026 RoadWatch</footer>
+
+<script src="js/script.js"></script>
+</body>
+</html>
