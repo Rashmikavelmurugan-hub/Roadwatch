@@ -1,0 +1,108 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial;
+    background: #eee;
+    color: #222;
+}
+
+header {
+    background: #333;
+    color: white;
+    padding: 18px 7%;
+    display: flex;
+    justify-content: space-between;
+}
+
+nav a {
+    color: white;
+    margin-left: 18px;
+    text-decoration: none;
+}
+
+.hero {
+    background: #555;
+    color: white;
+    text-align: center;
+    padding: 90px 20px;
+}
+
+.hero h1 {
+    font-size: 40px;
+}
+
+.button, button {
+    background: #333;
+    color: white;
+    padding: 12px 22px;
+    border: 0;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.stats, .cards {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    padding: 30px;
+}
+
+.stats div, .card, .table, .form {
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+}
+
+.stats div {
+    width: 150px;
+    text-align: center;
+}
+
+.issues, .about, .dashboard {
+    text-align: center;
+    padding: 30px;
+}
+
+.card {
+    width: 250px;
+}
+
+.form {
+    max-width: 550px;
+    margin: 40px auto;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+input, select, textarea {
+    padding: 10px;
+    margin: 5px 0 15px;
+}
+
+textarea {
+    height: 100px;
+}
+
+#preview {
+    max-width: 200px;
+    margin: 10px auto;
+}
+
+.table {
+    max-width: 800px;
+    margin: auto;
+}
+
+footer {
+    background: #333;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
