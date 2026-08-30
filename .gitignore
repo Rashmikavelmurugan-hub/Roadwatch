@@ -1,0 +1,8 @@
+target/
+classes/
+test-classes/
+generated-sources/
+generated-test-sources/
+maven-status/
+uploads/
+.DS_Store
