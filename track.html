@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,22 +22,102 @@
     <p>Track reported infrastructure problems.</p>
 
     <section class="stats">
-        <div><h2>25</h2><p>Total</p></div>
-        <div><h2>10</h2><p>Pending</p></div>
-        <div><h2>8</h2><p>Progress</p></div>
-        <div><h2>7</h2><p>Resolved</p></div>
+        <div><h2 id="total">0</h2><p>Total</p></div>
+        <div><h2 id="pending">0</h2><p>Pending</p></div>
+        <div><h2 id="progress">0</h2><p>Progress</p></div>
+        <div><h2 id="resolved">0</h2><p>Resolved</p></div>
     </section>
 
     <div class="table">
         <h2>Recent Reports</h2>
-
-        <p>🕳️ Pothole — Trichy — <b>Pending</b></p>
-        <p>💡 Street Light — Srirangam — <b>In Progress</b></p>
-        <p>🛣️ Road Damage — Anna Nagar — <b>Resolved</b></p>
+        <div id="reports">Loading reports...</div>
     </div>
 </main>
 
 <footer>© 2026 RoadWatch</footer>
+
+<script>
+const API_URL =
+"https://roadwatch-backend-rashmika.onrender.com/api/reports";
+
+async function loadReports() {
+    try {
+        const response = await fetch(API_URL);
+
+        if (!response.ok) {
+            throw new Error("Failed to load reports");
+        }
+
+        const reports = await response.json();
+
+        let pending = 0;
+        let progress = 0;
+        let resolved = 0;
+
+        reports.forEach(report => {
+            const status = String(report.status || "Pending")
+                .toLowerCase();
+
+            if (status === "pending") {
+                pending++;
+            } else if (
+                status.includes("progress") ||
+                status.includes("progress")
+            ) {
+                progress++;
+            } else if (status === "resolved") {
+                resolved++;
+            }
+        });
+
+        document.getElementById("total").textContent =
+            reports.length;
+
+        document.getElementById("pending").textContent =
+            pending;
+
+        document.getElementById("progress").textContent =
+            progress;
+
+        document.getElementById("resolved").textContent =
+            resolved;
+
+        const reportBox = document.getElementById("reports");
+        reportBox.innerHTML = "";
+
+        if (reports.length === 0) {
+            reportBox.textContent = "No reports found.";
+            return;
+        }
+
+        reports.forEach(report => {
+            const item = document.createElement("p");
+
+            const type = report.issueType ||
+                         report.type ||
+                         "Issue";
+
+            const location = report.location || "Unknown";
+
+            const status = report.status || "Pending";
+
+            item.textContent =
+                "🚧 " + type + " — " +
+                location + " — " + status;
+
+            reportBox.appendChild(item);
+        });
+
+    } catch (error) {
+        console.error(error);
+
+        document.getElementById("reports").textContent =
+            "Unable to load reports.";
+    }
+}
+
+loadReports();
+</script>
 
 </body>
 </html>
